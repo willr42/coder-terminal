@@ -1,5 +1,5 @@
 import npyscreen
-from fileloader import file_loader
+from filesystem import check_for_library_file
 
 
 class ShelfView(npyscreen.Form):
@@ -7,7 +7,7 @@ class ShelfView(npyscreen.Form):
 
     def create(self):
 
-        self.add(npyscreen.TitleText, name="Text:", value=f"{file_loader()}")
+        self.add(npyscreen.TitleText, name="Text:", value=f"{check_for_library_file()}")
 
     # Check for the existence of file.
 
