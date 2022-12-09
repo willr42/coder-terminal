@@ -1,10 +1,10 @@
 import platformdirs
 
 
-def check_for_library_file():
+def check_for_library_file(directory="greatreads", file="library.json"):
     """Checks for the existence of the greatreads library. If it doesn't exist, we create an empty instance of the file to write to later."""
-    data_path = platformdirs.user_data_path().joinpath("greatreads")
-    json_path = data_path.joinpath("library.json")
+    data_path = platformdirs.user_data_path().joinpath(directory)
+    json_path = data_path.joinpath(file)
     try:
         if not data_path.exists():
             data_path.mkdir()
