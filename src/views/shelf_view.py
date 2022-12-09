@@ -1,15 +1,17 @@
 import npyscreen
-from filesystem import check_for_library_file
+from Library import Library
 
 
 class ShelfView(npyscreen.Form):
     OK_BUTTON_TEXT = "EXIT?"
 
     def create(self):
+        # Initialise a library
+        library_path = Library.initialise_library_file()
 
-        self.add(npyscreen.TitleText, name="Text:", value=f"{check_for_library_file()}")
+        # Load library into Library object
 
-    # Check for the existence of file.
+        self.add(npyscreen.TitleText, name="Text:", value=f"{library_path}")
 
     def afterEditing(self):
         self.parentApp.setNextForm(None)
