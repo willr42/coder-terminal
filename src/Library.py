@@ -1,4 +1,4 @@
-import platformdirs
+import platformdirs  # Using platformdirs, hopefully this should be cross-platform...
 
 
 class Library:
@@ -20,4 +20,27 @@ class Library:
             print(f"Something went wrong. {exception}")
 
     def load_library(self):
+        """Loads the library from disk."""
+        return {
+            "shelves": [
+                {
+                    "shelf_name": "to read",
+                    "books": [
+                        {
+                            "title": "harry potter and the chamber of secrets",
+                            "published_on": "1990-02-04",
+                            "author": "j.k. rowling",
+                        },
+                        {
+                            "title": "going postal",
+                            "published_on": "1900-01-01",
+                            "author": "terry pratchett",
+                        },
+                    ],
+                }
+            ]
+        }
+
+    def save_library(self):
+        """Save the library to disk as JSON."""
         pass
