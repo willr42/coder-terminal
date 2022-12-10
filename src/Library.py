@@ -2,10 +2,11 @@ import platformdirs
 
 
 class Library:
-    def __init__(self) -> None:
+    def __init__(self):
+        self.json_path = self.initialise_library_file()
         pass
 
-    def initialise_library_file(directory="greatreads", file="library.json"):
+    def initialise_library_file(self, directory="greatreads", file="library.json"):
         """Checks for the existence of the greatreads library. If it doesn't exist, we create an empty instance of the file to write to later."""
         data_path = platformdirs.user_data_path().joinpath(directory)
         json_path = data_path.joinpath(file)
