@@ -9,7 +9,7 @@ class ShelfView(npyscreen.Form):
         self.add(
             npyscreen.TitleText,
             name="Text:",
-            value=f"{self.parentApp.library.json_path}",
+            value=f"{self.parentApp.library.json_data}",
         )
 
     def afterEditing(self):
