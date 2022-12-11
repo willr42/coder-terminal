@@ -1,4 +1,6 @@
+from pathlib import Path
 import platformdirs  # Using platformdirs, hopefully this should be cross-platform...
+import orjson
 
 
 class Library:
@@ -20,27 +22,25 @@ class Library:
         except Exception as exception:
             print(f"Something went wrong. {exception}")
 
-    def load_library(self):
+    def deserialize_library(self):
         """Loads the library from disk."""
-        return {
-            "shelves": [
-                {
-                    "shelf_name": "to read",
-                    "books": [
-                        {
-                            "title": "harry potter and the chamber of secrets",
-                            "published_on": "1990-02-04",
-                            "author": "j.k. rowling",
-                        },
-                        {
-                            "title": "going postal",
-                            "published_on": "1900-01-01",
-                            "author": "terry pratchett",
-                        },
-                    ],
-                }
-            ]
-        }
+
+        library_path = self.json_path
+
+        library_path = Path("/home/willr/development/coder-terminal/dummydata.json")
+
+        try:
+            with open(library_path, "r") as file:
+                json_data = orjson.loads(file.read())
+                return json_data
+
+        except FileNotFoundError:
+            exit(1)
+
+    def create_library(self, data):
+        """Creates the Shelves and Books inside the library."""
+        self.json_data = data
+        pass
 
     def save_library(self):
         """Save the library to disk as JSON."""
