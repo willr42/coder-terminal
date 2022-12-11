@@ -2,11 +2,12 @@ import platformdirs  # Using platformdirs, hopefully this should be cross-platfo
 
 
 class Library:
-    def __init__(self):
-        self.json_path = self.initialise_library_file()
-        pass
+    def __init__(self, directory="greatreads", file="library.json"):
+        self.json_path = self.initialise_library_file(directory, file)
+        data = self.deserialize_library()
+        self.create_library(data)
 
-    def initialise_library_file(self, directory="greatreads", file="library.json"):
+    def initialise_library_file(self, directory, file):
         """Checks for the existence of the greatreads library. If it doesn't exist, we create an empty instance of the file to write to later."""
         data_path = platformdirs.user_data_path().joinpath(directory)
         json_path = data_path.joinpath(file)
