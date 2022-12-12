@@ -1,10 +1,12 @@
 from pathlib import Path
+from Shelf import Shelf
 import platformdirs  # Using platformdirs, hopefully this should be cross-platform...
 import orjson
 
 
 class Library:
     def __init__(self, directory="greatreads", file="library.json"):
+        self.contents = []
         self.json_path = self.initialise_library_file(directory, file)
         data = self.deserialize_library()
         self.create_library(data)
@@ -39,8 +41,13 @@ class Library:
 
     def create_library(self, data):
         """Creates the Shelves and Books inside the library."""
-        self.json_data = data
-        pass
+        # If data exists, they've run before, so construct the shelves.
+        if data:
+            for shelf in data.get("shelves"):
+                self.contents.append(Shelf(shelf))
+        # If no data, we just create an empty Shelf object to work with.
+        else:
+            self.contents.append(Shelf())
 
     def save_library(self):
         """Save the library to disk as JSON."""
