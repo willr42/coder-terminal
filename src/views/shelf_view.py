@@ -7,8 +7,14 @@ class ShelfSelectView(npyscreen.Form):
     def create(self):
         # pass in the shelves to be displayed
         self.add(
-            ShelfList, values=self.parentApp.library.contents, allow_filtering=False
+            ShelfList,
+            values=self.parentApp.library.contents,
+            allow_filtering=False,
+            max_height=10,
+            scroll_exit=True,
         )
+
+        self.add(EditShelves, name="Edit Shelves")
 
     def afterEditing(self):
         self.parentApp.setNextForm(None)
