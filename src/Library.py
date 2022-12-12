@@ -27,7 +27,7 @@ class Library:
 
         library_path = self.json_path
 
-        library_path = Path("/home/willr/development/coder-terminal/dummydata.json")
+        library_path = Path.home() / "development" / "coder-terminal" / "dummydata.json"
 
         try:
             with open(library_path, "r") as file:
