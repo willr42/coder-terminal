@@ -1,7 +1,7 @@
 import npyscreen
 
 from Library import Library
-from .shelf_view import ShelfView
+from .shelf_view import ShelfSelectView
 
 
 class GreatReadsApp(npyscreen.NPSAppManaged):
@@ -9,4 +9,4 @@ class GreatReadsApp(npyscreen.NPSAppManaged):
 
     def onStart(self):
         self.library = Library()
-        self.addForm("MAIN", ShelfView)
+        self.addForm("MAIN", ShelfSelectView)

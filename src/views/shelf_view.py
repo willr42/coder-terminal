@@ -1,15 +1,13 @@
 import npyscreen
 
 
-class ShelfView(npyscreen.Form):
+class ShelfSelectView(npyscreen.Form):
     OK_BUTTON_TEXT = "EXIT?"
 
     def create(self):
-
+        # pass in the shelves to be displayed
         self.add(
-            npyscreen.TitleText,
-            name="Text:",
-            value=f"{self.parentApp.library.json_data}",
+            ShelfList, values=self.parentApp.library.contents, allow_filtering=False
         )
 
     def afterEditing(self):
