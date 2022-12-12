@@ -26,9 +26,16 @@ class ShelfList(npyscreen.MultiLineAction):
 
     # change how each shelf is displayed
     def display_value(self, vl):
-        print(self)
         return vl.shelf_name.title()
 
     # change the action on keypress
     def actionHighlighted(self, act_on_this, key_press):
-        print(key_press)
+        pass
+
+
+class EditShelves(npyscreen.Button):
+    def __init__(self, screen, *args, **keywords):
+        super().__init__(screen, *args, **keywords)
+
+    def whenToggled(self):
+        print("Hello")
