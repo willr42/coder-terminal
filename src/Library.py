@@ -49,6 +49,12 @@ class Library:
         else:
             self.contents.append(Shelf())
 
+    def add_shelf(self, shelf_name):
+        if shelf_name == "":
+            return "Cannot create an empty shelf."
+        else:
+            self.contents.append(Shelf(data={"shelf_name": shelf_name}))
+
     def save_library(self):
         """Save the library to disk as JSON."""
         pass
