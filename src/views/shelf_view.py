@@ -1,7 +1,7 @@
 import npyscreen
 
 
-class ShelfSelectView(npyscreen.Form):
+class ShelfSelectView(npyscreen.ActionFormMinimal):
     OK_BUTTON_TEXT = "EXIT?"
 
     def create(self):
@@ -14,9 +14,16 @@ class ShelfSelectView(npyscreen.Form):
             scroll_exit=True,
         )
 
-        self.add(EditShelves, name="Edit Shelves")
+        self.add(
+            npyscreen.ButtonPress,
+            name="Edit Shelves",
+            when_pressed_function=self.change_to_edit,
+        )
 
-    def afterEditing(self):
+    def change_to_edit(self):
+        self.parentApp.switchForm("EDIT_SHELVES")
+
+    def on_ok(self):
         self.parentApp.setNextForm(None)
 
 
