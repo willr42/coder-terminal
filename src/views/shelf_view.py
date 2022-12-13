@@ -38,4 +38,19 @@ class EditShelves(npyscreen.Button):
         super().__init__(screen, *args, **keywords)
 
     def whenToggled(self):
-        print("Hello")
+        self.parent.parentApp.switchForm("EDIT_SHELVES")
+
+
+class ShelfEditView(npyscreen.ActionFormV2):
+    def create(self):
+        self.add(
+            npyscreen.TitleText,
+            w_id="new_shelf_name",
+            name="Add new shelf: ",
+        )
+
+    def on_ok(self):
+        new_shelf_name = self.get_widget("new_shelf_name").value
+        self.parentApp.library.add_shelf(new_shelf_name)
+        new_shelf_name = ""
+        self.parentApp.setNextForm("MAIN")
