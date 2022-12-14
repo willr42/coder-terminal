@@ -1,4 +1,4 @@
-from views.app_view import GreatReadsApp
+from screens.app_view import GreatReadsApp
 
 
 def main():
