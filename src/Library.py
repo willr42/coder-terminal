@@ -38,6 +38,8 @@ class Library:
 
         except FileNotFoundError:
             exit(1)
+    
+    #TODO Missing step here. Add a validate data section – we want to make sure the JSON file hasn't been changed somehow between sessions.
 
     def create_library(self, data):
         """Creates the Shelves and Books inside the library."""
