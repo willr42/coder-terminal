@@ -33,13 +33,15 @@ class Library:
 
         try:
             with open(library_path, "r") as file:
-                json_data = orjson.loads(file.read())
-                return json_data
-
+                cache = file.read()
+                # Catch if there's an empty JSON file
+                if cache:
+                    json_data = orjson.loads(cache)
+                    return json_data
         except FileNotFoundError:
             exit(1)
-    
-    #TODO Missing step here. Add a validate data section – we want to make sure the JSON file hasn't been changed somehow between sessions.
+
+    # TODO Missing step here. Add a validate data section – we want to make sure the JSON file hasn't been changed somehow between sessions.
 
     def create_library(self, data):
         """Creates the Shelves and Books inside the library."""
