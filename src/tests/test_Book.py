@@ -23,4 +23,4 @@ class TestBook:
         test_book = Book(data)
         assert test_book.author == "j.r.r. tolkien"
         assert test_book.title == "the fellowship of the ring"
-        assert test_book.first_publish_year == None
+        assert test_book.first_publish_year == ""
