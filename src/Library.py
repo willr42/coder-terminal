@@ -56,6 +56,11 @@ class Library:
     def add_shelf(self, shelf_name):
         self.contents.append(Shelf(data={"shelf_name": shelf_name}))
 
+    def rename_shelf(self, old_shelf_name, new_shelf_name):
+        for shelf in self.contents:
+            if shelf.shelf_name == old_shelf_name:
+                shelf.shelf_name = new_shelf_name
+
     def save_library(self):
         """Save the library to disk as JSON."""
         pass
