@@ -47,7 +47,7 @@ class Library:
                 self.contents.append(Shelf(shelf))
         # If no data, we just create an empty Shelf object to work with.
         else:
-            self.contents.append(Shelf())
+            self.contents.append(Shelf(data={"shelf_name": "Default Shelf"}))
 
     def add_shelf(self, shelf_name):
         if shelf_name == "":
