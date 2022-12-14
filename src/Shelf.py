@@ -10,11 +10,13 @@ class Shelf:
             self.add_initial_books(data)
 
     def add_initial_books(self, data):
+        """Only used for loading initial data into a Shelf."""
         if data.get("books", None):
             for book in data.get("books"):
-                self.contents.append(Book(book))
+                self.add_new_book(book)
 
     def add_new_book(self, new_book):
+        """Adds a new book to the Shelf"""
         self.contents.append(Book(new_book))
 
     def edit_book(self, book_title_to_edit, updates):
@@ -29,6 +31,7 @@ class Shelf:
             book_to_edit.update_book(key, updates[key])
 
     def remove_book(self, book_title_to_remove):
+        """Removes a book from the Shelf by filtering the contents array."""
         new_contents = [
             book for book in self.contents if book.title != book_title_to_remove
         ]

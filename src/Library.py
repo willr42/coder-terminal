@@ -51,13 +51,10 @@ class Library:
                 self.contents.append(Shelf(shelf))
         # If no data, we just create an empty Shelf object to work with.
         else:
-            self.contents.append(Shelf(data={"shelf_name": "Default Shelf"}))
+            self.add_shelf("Default Shelf")
 
     def add_shelf(self, shelf_name):
-        if shelf_name == "":
-            return "Cannot create an empty shelf."
-        else:
-            self.contents.append(Shelf(data={"shelf_name": shelf_name}))
+        self.contents.append(Shelf(data={"shelf_name": shelf_name}))
 
     def save_library(self):
         """Save the library to disk as JSON."""
