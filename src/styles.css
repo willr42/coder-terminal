@@ -1,0 +1,27 @@
+#welcomeMessage {
+	text-align: center;
+	padding: 8 4;
+}
+#welcomeButtonHolder {
+	align: center top;
+}
+
+#welcomeButtonHolder > Button {
+	margin: 0 3;
+}
+
+#shelfViewContainer {
+	align: center top;
+}
+
+#shelfTitle {
+	text-align: center;
+	width: 1fr;
+	text-style: bold;
+}
+
+#shelfListContainer {
+	border: heavy white;
+	max-width: 80%;
+	max-height: 80vh;
+}
