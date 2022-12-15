@@ -5,8 +5,6 @@ from textual.widgets import ListView, ListItem, Label, Header, Footer
 
 class ShelfView(Screen):
     def compose(self):
-        yield Header()
-        yield Footer()
         list_items = []
         for shelf in self.app.library.contents:
             list_items.append(ListItem(Label(f"{shelf.shelf_name}")))
@@ -16,3 +14,5 @@ class ShelfView(Screen):
             Vertical(ListView(*list_items), id="shelfListContainer"),
             id="shelfViewContainer",
         )
+
+        yield Footer()
