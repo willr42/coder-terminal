@@ -1,31 +1,54 @@
+#quitDialogWrapper {
+  height: 100%;
+  width: 100%;
+  align-horizontal: center;
+}
+
+#quitDialog {
+  grid-size: 2;
+  grid-gutter: 1 2;
+  margin: 1 2;
+  width: 50%;
+}
+
+#quitQuestion {
+  column-span: 2;
+  content-align: center bottom;
+  width: 100%;
+  height: 100%;
+}
+
+.quitButton {
+  width: 100%;
+}
+
 #welcomeMessage {
-	margin: 1 0 0 0;
-	text-align: center;
+  margin: 1 0 0 0;
+  text-align: center;
 }
 
 #welcomeButtonHolder {
-	margin: 1 0 0 0;
-	align: center top;
-	border: solid red;
-	height: auto
+  margin: 1 0 0 0;
+  align: center top;
+  height: auto;
 }
 
 #welcomeButtonHolder > Button {
-	margin: 0 3;
+  margin: 0 3;
 }
 
 #shelfViewContainer {
-	align: center top;
-	height: 90%;
+  align: center top;
+  height: 90%;
 }
 
 #shelfTitle {
-	text-align: center;
-	width: 1fr;
-	text-style: bold;
+  text-align: center;
+  width: 1fr;
+  text-style: bold;
 }
 
 #shelfListContainer {
-	border: heavy white;
-	max-width: 80%;
+  border: heavy white;
+  max-width: 80%;
 }

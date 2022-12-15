@@ -1,9 +1,9 @@
+from textual.screen import Screen
 from textual.app import App
-from textual.containers import Container, Vertical, Horizontal
+from textual.containers import Container, Horizontal, Grid
 from textual.widgets import (
     Header,
     Footer,
-    Input,
     Button,
     Static,
 )
@@ -17,6 +17,7 @@ class GreatReadsApp(App):
 
     SCREENS = {"shelf": ShelfView()}
     CSS_PATH = "styles.css"
+    BINDINGS = [("escape", "request_quit", "Quit")]
 
     def __init__(self):
         super().__init__()
@@ -47,6 +48,26 @@ class GreatReadsApp(App):
         if button_id == "exit":
             self.exit()
 
+    def action_request_quit(self):
+        self.push_screen(QuitScreen())
 
-class InputText(Input):
-    pass
+
+class QuitScreen(Screen):
+    """Taken from the official documentation."""
+
+    def compose(self):
+        yield Container(
+            Grid(
+                Static("Are you sure you want to quit?", id="quitQuestion"),
+                Button("Quit", variant="error", classes="quitButton", id="quit"),
+                Button("Cancel", variant="primary", classes="quitButton"),
+                id="quitDialog",
+            ),
+            id="quitDialogWrapper",
+        )
+
+    def on_button_pressed(self, event: Button.Pressed) -> None:
+        if event.button.id == "quit":
+            self.app.exit()
+        else:
+            self.app.pop_screen()
