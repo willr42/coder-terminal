@@ -1,9 +1,13 @@
 #welcomeMessage {
+	margin: 1 0 0 0;
 	text-align: center;
-	padding: 8 4;
 }
+
 #welcomeButtonHolder {
+	margin: 1 0 0 0;
 	align: center top;
+	border: solid red;
+	height: auto
 }
 
 #welcomeButtonHolder > Button {
@@ -12,6 +16,7 @@
 
 #shelfViewContainer {
 	align: center top;
+	height: 90%;
 }
 
 #shelfTitle {
@@ -23,5 +28,4 @@
 #shelfListContainer {
 	border: heavy white;
 	max-width: 80%;
-	max-height: 80vh;
 }
