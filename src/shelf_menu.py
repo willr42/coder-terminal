@@ -11,8 +11,9 @@ def shelf_menu(library):
         "R": menu_delete_shelf,
         "V": menu_view_shelf,
     }
+    console = Console()
 
-    print_shelf_menu(library=library)
+    print_shelf_menu(library=library, console=console)
 
     while True:
         user_choice = handle_user_input("Choose your option: ").upper()
@@ -21,11 +22,10 @@ def shelf_menu(library):
         if user_choice not in shelf_menu_choices.keys():
             print("Sorry, please select a valid choice.")
             continue
-        shelf_menu_choices[user_choice](library=library)
+        shelf_menu_choices[user_choice](library=library, console=console)
 
 
-def print_shelf_menu(library):
-    console = Console()
+def print_shelf_menu(library, console):
     console.print(
         Panel(
             "Shelf View\nHere you can operate on your shelves.",
@@ -57,21 +57,22 @@ def print_shelves(library, console):
 
 
 def menu_add_shelf(library, console):
-    return
     console.print("Enter the name of the shelf you'd like to add", style="b")
     new_shelf_name = handle_user_input("New Shelf: ")
+    library.add_shelf(new_shelf_name)
+    print_shelf_menu(library, console)
 
 
-def menu_edit_shelf(library):
+def menu_edit_shelf(library, console):
     print("User wants to edit")
     pass
 
 
-def menu_delete_shelf(library):
+def menu_delete_shelf(library, console):
     print("User wants to delete")
     pass
 
 
-def menu_view_shelf(library):
+def menu_view_shelf(library, console):
     print("User wants to view")
     pass
