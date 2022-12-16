@@ -4,7 +4,7 @@ from rich.table import Table
 from rich.panel import Panel
 
 from user_input import handle_user_input
-from exceptions import UserExited
+from utils import create_menu_table
 
 
 def shelf_menu(library):
@@ -46,15 +46,14 @@ def print_shelf_menu(library, console):
     print_shelves(library=library, console=console)
 
     console.print("SHELF MENU", style="b u")
-    table = Table(show_header=False, box=False)
-    table.add_column("Option", style="bold green")
-    table.add_row("V", "View Books on Shelf")
-    table.add_row("A", "Add New Shelf")
-    table.add_row("E", "Edit Shelf Name")
-    table.add_row("R", "Remove Shelf")
-    table.add_row("Q", "Quit")
-
-    console.print(table)
+    table_options = {
+        "V": "View Books on Shelf",
+        "A": "Add New Shelf",
+        "E": "Edit Shelf Name",
+        "R": "Remove Shelf",
+        "Q": "Quit",
+    }
+    console.print(create_menu_table(table_options, show_header=False, box=False))
 
 
 def print_shelves(library, console):
