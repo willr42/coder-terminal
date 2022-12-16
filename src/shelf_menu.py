@@ -6,6 +6,7 @@ from user_input import handle_user_input
 
 
 def shelf_menu(library):
+    """Main function that runs the shelf menu."""
     shelf_menu_choices = {
         "A": menu_add_shelf,
         "E": menu_edit_shelf,
@@ -34,6 +35,7 @@ def shelf_menu(library):
 
 
 def print_shelf_menu(library, console):
+    """Present menu options."""
 
     print_shelves(library=library, console=console)
 
@@ -50,6 +52,7 @@ def print_shelf_menu(library, console):
 
 
 def print_shelves(library, console):
+    """Print shelves in library."""
     table = Table()
     table.add_column("Shelf Name")
     table.add_column("Book Count")
@@ -59,6 +62,7 @@ def print_shelves(library, console):
 
 
 def menu_add_shelf(library, console):
+    """Takes input for new shelf and passes it to global library object."""
     console.print(
         "Enter the name of the shelf you'd like to add, or \cancel to cancel", style="b"
     )
@@ -66,10 +70,10 @@ def menu_add_shelf(library, console):
     if new_shelf_name != "\cancel":
         library.add_shelf(new_shelf_name)
     print_shelf_menu(library, console)
-    return
 
 
 def menu_edit_shelf(library, console):
+    """Takes input for shelf to rename and passes to global library object."""
     console.print(
         "Which shelf would you like to rename? Or \cancel to cancel", style="b"
     )
@@ -78,15 +82,16 @@ def menu_edit_shelf(library, console):
         # If the shelf matches with one of the shelves in the library
         new_name = handle_user_input("Enter the new name of the shelf: ")
         library.rename_shelf(shelf_to_edit, new_name)
-
     print_shelf_menu(library, console)
-    return
 
 
 def menu_delete_shelf(library, console):
+    """Allows the user to delete their shelves, except for final shelf."""
     if library.shelf_count == 1:
-        console.print("Sorry, you can't delete your final shelf.", style="b")
-        print_shelf_menu(library, console)
+        console.print("Sorry, you can't delete your final shelf.", style="red b")
+        sleep(1)
+
+    else:
     console.print("Which shelf would you like to delete?", style="b")
     delete_shelf_name = handle_user_input("Shelf to Delete: ")
     removed = library.remove_shelf(delete_shelf_name)
@@ -94,7 +99,6 @@ def menu_delete_shelf(library, console):
         console.print("Sorry, I couldn't find that shelf.", style="red b")
         sleep(1)
     print_shelf_menu(library, console)
-    return
 
 
 def menu_view_shelf(library, console):
