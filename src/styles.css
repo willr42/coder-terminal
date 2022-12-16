@@ -2,6 +2,7 @@
   height: 100%;
   width: 100%;
   align-horizontal: center;
+  overflow-y: hidden;
 }
 
 #quitDialog {
@@ -37,18 +38,43 @@
   margin: 0 3;
 }
 
+#shelfGrid {
+  grid-size: 3 3;
+  grid-rows: 1fr 3fr;
+  padding: 0 3;
+  align-vertical: middle;
+}
+
 #shelfViewContainer {
   align: center top;
+  column-span: 3;
   height: 90%;
 }
 
-#shelfTitle {
-  text-align: center;
-  width: 1fr;
+#shelfTitleContainer {
+  column-span: 3;
+  width: 100%;
+  height: auto;
+  align: center middle;
+  border-top: rgba(0, 0, 0, 0);
+}
+
+#shelfTitleText {
   text-style: bold;
 }
 
 #shelfListContainer {
   border: heavy white;
   max-width: 80%;
+}
+
+#shelfButtonContainer {
+  column-span: 3;
+  height: auto;
+  width: 100%;
+  align: center middle;
+}
+
+#shelfButtonContainer > Button {
+  margin: 0 4;
 }

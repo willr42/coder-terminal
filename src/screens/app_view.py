@@ -35,7 +35,6 @@ class GreatReadsApp(App):
             ),
             Horizontal(
                 Button("Get Started", id="start", variant="primary"),
-                Button("Exit", id="exit"),
                 id="welcomeButtonHolder",
             ),
         )
@@ -45,8 +44,6 @@ class GreatReadsApp(App):
         button_id = event.button.id
         if button_id == "start":
             self.push_screen("shelf")
-        if button_id == "exit":
-            self.exit()
 
     def action_request_quit(self):
         self.push_screen(QuitScreen())
@@ -68,6 +65,7 @@ class QuitScreen(Screen):
 
     def on_button_pressed(self, event: Button.Pressed) -> None:
         if event.button.id == "quit":
+            # TODO save app ehre
             self.app.exit()
         else:
             self.app.pop_screen()
