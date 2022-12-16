@@ -9,6 +9,9 @@ class Shelf:
             self.shelf_name = data.get("shelf_name", "Default Shelf")
             self.add_initial_books(data)
 
+    def __str__(self) -> str:
+        return f"{self.shelf_name}"
+
     @property
     def length(self):
         return len(self.contents)

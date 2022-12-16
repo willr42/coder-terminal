@@ -62,7 +62,7 @@ def print_shelves(library, console):
     table.add_column("Shelf Name")
     table.add_column("Book Count")
     for shelf in library.contents:
-        table.add_row(shelf.shelf_name, str(shelf.length))
+        table.add_row(str(shelf), str(shelf.length))
     console.print(table)
 
 
