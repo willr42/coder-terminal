@@ -1,6 +1,5 @@
 from user_input import handle_user_input
 from rich.console import Console
-from rich.text import Text
 from rich.table import Table
 from rich.panel import Panel
 

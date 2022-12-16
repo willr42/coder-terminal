@@ -9,6 +9,10 @@ class Shelf:
             self.shelf_name = data.get("shelf_name", "Default Shelf")
             self.add_initial_books(data)
 
+    @property
+    def length(self):
+        return len(self.contents)
+
     def add_initial_books(self, data):
         if data.get("books", None):
             for book in data.get("books"):
