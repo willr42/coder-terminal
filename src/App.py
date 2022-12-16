@@ -1,6 +1,6 @@
 from Library import Library
-from welcome_menu import welcome_menu
-from shelf_menu import shelf_menu
+from menus.welcome_menu import welcome_menu
+from menus.shelf_menu import shelf_menu
 from exceptions import UserExited
 import sys
 

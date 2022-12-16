@@ -2,7 +2,9 @@ from time import sleep
 from rich.console import Console
 from rich.table import Table
 from rich.panel import Panel
+
 from user_input import handle_user_input
+from exceptions import UserExited
 
 
 def shelf_menu(library):
@@ -26,12 +28,15 @@ def shelf_menu(library):
 
     while True:
         user_choice = handle_user_input("Choose your option: ").upper()
+        # Handle direct quit order
         if user_choice == "Q":
             return False
+        # Check for missing command
         if user_choice not in shelf_menu_choices.keys():
             print("Sorry, please select a valid choice.")
             continue
         shelf_menu_choices[user_choice](library=library, console=console)
+        # If this returns False, they've selected quit
 
 
 def print_shelf_menu(library, console):
@@ -92,17 +97,23 @@ def menu_delete_shelf(library, console):
         sleep(1)
 
     else:
-    console.print("Which shelf would you like to delete?", style="b")
-    delete_shelf_name = handle_user_input("Shelf to Delete: ")
-    removed = library.remove_shelf(delete_shelf_name)
-    if not removed:
-        console.print("Sorry, I couldn't find that shelf.", style="red b")
-        sleep(1)
+        console.print("Which shelf would you like to delete?", style="b")
+        delete_shelf_name = handle_user_input("Shelf to Delete: ")
+        removed = library.remove_shelf(delete_shelf_name)
+        if not removed:
+            console.print("Sorry, I couldn't find that shelf.", style="red b")
+            sleep(1)
     print_shelf_menu(library, console)
 
 
 def menu_view_shelf(library, console):
+    """Activates individual shelf view."""
     print("User wants to view")
-    pass
+    # Take input for shelf name
+    # If shelf doesn't exist, back to menu
+    while True:
+        shelf_detail_view_response = shelf_detail_view()
+        if shelf_detail_view_response:
+            break
+
     print_shelf_menu(library, console)
-    return
