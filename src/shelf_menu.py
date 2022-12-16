@@ -13,6 +13,13 @@ def shelf_menu(library):
     }
     console = Console()
 
+    console.print(
+        Panel(
+            "Shelf View\nHere you can operate on your shelves.",
+            expand=False,
+        )
+    )
+
     print_shelf_menu(library=library, console=console)
 
     while True:
@@ -26,12 +33,6 @@ def shelf_menu(library):
 
 
 def print_shelf_menu(library, console):
-    console.print(
-        Panel(
-            "Shelf View\nHere you can operate on your shelves.",
-            expand=False,
-        )
-    )
 
     print_shelves(library=library, console=console)
 
