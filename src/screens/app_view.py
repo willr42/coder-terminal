@@ -9,13 +9,13 @@ from textual.widgets import (
 )
 
 from Library import Library
-from .shelf_view import ShelfView
+from .shelf_view import ShelfView, BookView
 
 
 class GreatReadsApp(App):
     """Create the initial Application object."""
 
-    SCREENS = {"shelf": ShelfView()}
+    SCREENS = {"shelf": ShelfView(), "book_overview": BookView()}
     CSS_PATH = "styles.css"
     BINDINGS = [("escape", "request_quit", "Quit")]
 

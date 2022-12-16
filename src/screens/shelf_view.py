@@ -20,8 +20,8 @@ class ShelfView(Screen):
                 id="shelfTitleContainer",
             ),
             Container(
-            Vertical(ListView(*list_items), id="shelfListContainer"),
-            id="shelfViewContainer",
+                Vertical(ListView(*list_items), id="shelfListContainer"),
+                id="shelfViewContainer",
             ),
             Horizontal(
                 Button("Add", id="addShelfButton"),
@@ -32,4 +32,23 @@ class ShelfView(Screen):
             id="shelfGrid",
         )
 
-        yield Footer()
+    def on_button_pressed(self, event):
+        print(event)
+
+
+class ShelfListItem(ListItem):
+    def on_click(self, event):
+        self.app.switch_screen("book_overview")
+
+
+class BookView(Screen):
+    def compose(self):
+        yield Label(f"{self}")
+        yield Button("Switch back", id="backButton")
+
+    def on_button_pressed(self, event):
+        if event.button.id == "backButton":
+            print(self.app.library.contents)
+            self.app.library.contents.pop()
+            self.app.switch_screen("shelf")
+            self.app.screen.refresh()
