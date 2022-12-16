@@ -11,6 +11,10 @@ class Library:
         data = self.deserialize_library()
         self.create_library(data)
 
+    @property
+    def shelf_count(self):
+        return len(self.contents)
+
     def initialise_library_file(self, directory, file):
         """Checks for the existence of the greatreads library. If it doesn't exist, we create an empty instance of the file to write to later."""
         data_path = platformdirs.user_data_path().joinpath(directory)
@@ -63,6 +67,22 @@ class Library:
         for shelf in self.contents:
             if shelf.shelf_name == old_shelf_name:
                 shelf.shelf_name = new_shelf_name
+
+    def remove_shelf(self, shelf_name):
+        new_contents = []
+        found = False
+
+        for shelf in self.contents:
+            if shelf.shelf_name == shelf_name:
+                found = True
+            else:
+                new_contents.append(shelf)
+
+        # If shelf is found, we use the new_contents object
+        if found:
+            self.contents = new_contents
+
+        return found
 
     def save_library(self):
         """Save the library to disk as JSON."""
