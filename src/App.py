@@ -26,5 +26,5 @@ class App:
 
     def cleanup(self):
         """Ensure safe shutdown."""
-        print("Closing...")
+        print("\nClosing...")
         self.library.save_library()
