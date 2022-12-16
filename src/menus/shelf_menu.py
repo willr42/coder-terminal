@@ -36,6 +36,7 @@ def shelf_menu(library):
             print("Sorry, please select a valid choice.")
             continue
         shelf_menu_choices[user_choice](library=library, console=console)
+        print_shelf_menu(library=library, console=console)
         # If this returns False, they've selected quit
 
 
@@ -74,7 +75,6 @@ def menu_add_shelf(library, console):
     new_shelf_name = handle_user_input("New Shelf: ")
     if new_shelf_name != "\cancel":
         library.add_shelf(new_shelf_name)
-    print_shelf_menu(library, console)
 
 
 def menu_edit_shelf(library, console):
@@ -87,7 +87,6 @@ def menu_edit_shelf(library, console):
         # If the shelf matches with one of the shelves in the library
         new_name = handle_user_input("Enter the new name of the shelf: ")
         library.rename_shelf(shelf_to_edit, new_name)
-    print_shelf_menu(library, console)
 
 
 def menu_delete_shelf(library, console):
@@ -103,7 +102,6 @@ def menu_delete_shelf(library, console):
         if not removed:
             console.print("Sorry, I couldn't find that shelf.", style="red b")
             sleep(1)
-    print_shelf_menu(library, console)
 
 
 def menu_view_shelf(library, console):
@@ -115,5 +113,3 @@ def menu_view_shelf(library, console):
         shelf_detail_view_response = shelf_detail_view()
         if shelf_detail_view_response:
             break
-
-    print_shelf_menu(library, console)
