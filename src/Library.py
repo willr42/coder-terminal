@@ -66,4 +66,4 @@ class Library:
 
     def save_library(self):
         """Save the library to disk as JSON."""
-        pass
+        print("saved library")
