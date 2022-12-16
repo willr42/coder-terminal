@@ -1,8 +1,9 @@
-from views.app_view import GreatReadsApp
+from App import App
 
 
 def main():
-    GreatReadsApp().run()
+    app = App()
+    app.run()
 
 
 if __name__ == "__main__":
