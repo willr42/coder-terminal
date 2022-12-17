@@ -16,11 +16,9 @@ class App:
         clear_screen()
         try:
             while True:
-                main_response = welcome_menu()
-                if not main_response:
+                if not welcome_menu():
                     raise UserExited
-                library_response = library_menu(self.library)
-                if not library_response:
+                if not library_menu(self.library):
                     raise UserExited
         except (UserExited, KeyboardInterrupt, EOFError):
             sys.exit(0)
