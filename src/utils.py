@@ -1,3 +1,6 @@
+from rich.align import Align
+from rich.console import Group
+from rich.panel import Panel
 from rich.table import Table
 
 
@@ -17,3 +20,25 @@ def create_menu_table(table_key, **table_options):
     for key, value in table_key.items():
         table.add_row(key, value)
     return table
+
+
+def menu_banner(heading, sub):
+    """Creates a banner that features before each menu to explain the view.
+
+    Args:
+        heading (str): center-aligned heading
+        sub (str): normal-aligned subtitle
+
+    Returns:
+        Panel: printable by `rich.console.Console`.
+    """
+    return Panel(
+        Group(
+            Align(
+                heading,
+                align="center",
+            ),
+            sub,
+        ),
+        expand=False,
+    )

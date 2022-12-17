@@ -4,7 +4,8 @@ from rich.table import Table
 from rich.panel import Panel
 
 from user_input import handle_user_input
-from utils import create_menu_table
+from menus.shelf_detail_menu import shelf_detail_menu
+from utils import create_menu_table, menu_banner
 
 
 def shelf_menu(library):
@@ -17,12 +18,7 @@ def shelf_menu(library):
     }
     console = Console()
 
-    console.print(
-        Panel(
-            "Shelf View\nHere you can operate on your shelves.",
-            expand=False,
-        )
-    )
+    console.print(menu_banner("Shelf View", "Here you can operate on your shelves."))
 
     print_shelf_menu(library=library, console=console)
 
@@ -105,10 +101,18 @@ def menu_delete_shelf(library, console):
 
 def menu_view_shelf(library, console):
     """Activates individual shelf view."""
-    print("User wants to view")
     # Take input for shelf name
+    console.print("Which shelf would you like to view?", style="b")
+    shelf_to_view = handle_user_input("Shelf to View: ")
     # If shelf doesn't exist, back to menu
-    while True:
-        shelf_detail_view_response = shelf_detail_view()
-        if shelf_detail_view_response:
-            break
+    if not library.get_shelf(shelf_to_view):
+        console.print(f"Sorry, the {shelf_to_view} shelf doesn't exist.")
+        sleep(1)
+    else:
+        while True:
+            shelf_detail_view_response = shelf_detail_menu(
+                library=library, active_shelf_name=shelf_to_view
+            )
+            # If this returns, we want to come back to the main shelf menu
+            if not shelf_detail_view_response:
+                break
