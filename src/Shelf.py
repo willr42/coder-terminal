@@ -22,7 +22,8 @@ class Shelf:
                 self.contents.append(Book(book))
 
     def add_new_book(self, new_book):
-        self.contents.append(Book(new_book))
+        if new_book:
+            self.contents.append(new_book)
 
     def edit_book(self, book_title_to_edit, updates):
         """Edits a book by updating the fields in the supplied dictionary."""
