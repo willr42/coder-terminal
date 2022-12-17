@@ -63,6 +63,11 @@ class Library:
         else:
             self.contents.append(Shelf(data={"shelf_name": shelf_name}))
 
+    def get_shelf(self, shelf_name):
+        for shelf in self.contents:
+            if shelf.shelf_name == shelf_name:
+                return shelf
+
     def rename_shelf(self, old_shelf_name, new_shelf_name):
         for shelf in self.contents:
             if shelf.shelf_name == old_shelf_name:
