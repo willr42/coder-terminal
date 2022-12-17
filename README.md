@@ -39,7 +39,7 @@ This codebase follows the [PEP8 style](https://peps.python.org/pep-0008/) using 
 - [x] A user can add a book to the active shelf.
 - [x] A user can delete a book from the active shelf.
 - [x] A user can add a book manually by inputting the book title, author name & publication date.
-- [ ] A user can search for a book by fuzzy strings (results provided by the OpenLibrary API).
+- [x] A user can search for a book by fuzzy strings (results provided by the OpenLibrary API).
 - [x] A user can edit the details of an existing book.
 
 # Implementation plan
@@ -82,3 +82,15 @@ Shelf card is feature-complete.
 
 ![Book task card - to test](./docs/progress-03-books.jpg)
 Books just need a unit test for editing functionality.
+
+![Overview after third sprint](./docs/progress-04-overview.png)
+Search is complete, persistence and sorting are the final features to nail.
+
+![Search task card](./docs/progress-04-search.png)
+Search card. This was easier to get working than I thought... Hoping I haven't left any holes.
+
+![Views task card](./docs/progress-04-views.png)
+Views are nearly complete, except for the concept of saving to disk.
+
+![Book task card - complete](./docs/progress-04-books.png)
+Books finished.
