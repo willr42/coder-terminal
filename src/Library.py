@@ -37,6 +37,12 @@ class Library:
         library_path = self.json_path
 
         library_path = (
+            Path.home()
+            / "development"
+            / "coderacademy"
+            / "coder-terminal"
+            / "dummydata.json"
+        )
 
         try:
             with open(library_path, "r") as file:
