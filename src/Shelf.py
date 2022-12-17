@@ -25,17 +25,6 @@ class Shelf:
         if new_book:
             self.contents.append(new_book)
 
-    def edit_book(self, book_title_to_edit, updates):
-        """Edits a book by updating the fields in the supplied dictionary."""
-        # Get a var that points to the book to edit
-        for book in self.contents:
-            if book.title == book_title_to_edit:
-                book_to_edit = book
-
-        # For all the updates provided, update the key
-        for key in updates:
-            book_to_edit.update_book(key, updates[key])
-
     def remove_book(self, book_to_remove):
         new_contents = [book for book in self.contents if book != book_to_remove]
 
