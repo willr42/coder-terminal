@@ -1,4 +1,4 @@
-from ..Book import Book
+from Book import Book
 
 
 class TestBook:
@@ -23,4 +23,16 @@ class TestBook:
         test_book = Book(data)
         assert test_book.author == "j.r.r. tolkien"
         assert test_book.title == "the fellowship of the ring"
-        assert test_book.first_publish_year == ""
+        assert test_book.first_publish_year == 0
+
+    def test_edit_book(self):
+        """Creates a book, then edits it, then tests that it has changed."""
+        data = {
+            "author": "j.r.r. tolkien",
+            "title": "the fellowship of the ring",
+            "first_publish_year": 1954,
+        }
+
+        test_book = Book(data)
+        test_book.update_book("author", "jeff bridges")
+        assert test_book.author == "jeff bridges"
