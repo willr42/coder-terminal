@@ -4,6 +4,9 @@ class Book:
         self.author = data.get("author", "")
         self.first_publish_year = data.get("first_publish_year", 0)
 
+    def __str__(self) -> str:
+        return f"{self.title}, {self.author}, {self.first_publish_year}"
+
     @property
     def publication_year(self):
         return str(self.first_publish_year)
