@@ -32,15 +32,15 @@ This codebase follows the [PEP8 style](https://peps.python.org/pep-0008/) using 
 - [x] A user with no shelves is able to add a new shelf.
 - [x] A user with shelves selects the shelf they wish to be active. This shelf displays a summary of all the books within the shelf.
 - [ ] A user can sort the shelf by book title, author name, publication date.
-- [ ] A user can delete a shelf.
+- [x] A user can delete a shelf.
 
 ## Book Management
 
-- [ ] A user can add a book to the active shelf.
+- [x] A user can add a book to the active shelf.
 - [x] A user can delete a book from the active shelf.
-- [ ] A user can add a book manually by inputting the book title, author name & publication date.
+- [x] A user can add a book manually by inputting the book title, author name & publication date.
 - [ ] A user can search for a book by fuzzy strings (results provided by the OpenLibrary API).
-- [ ] A user can edit the details of an existing book.
+- [x] A user can edit the details of an existing book.
 
 # Implementation plan
 
@@ -71,3 +71,14 @@ Card of Persistence features.
 
 ![Shelf task card - unfinished](./docs/progress-02-shelves.jpg)
 An in-progress task; building menus took longer than anticipated.
+
+![Overview after second sprint.](./docs/progress-03-overview.jpg)
+More progress after second sprint. Cards beginning to be ticked off, and updated with comments.
+
+Some under-estimated story points, some over, so I had to also tweak those along the way.
+
+![Shelf task card - finished](./docs/progress-03-shelves.jpg)
+Shelf card is feature-complete.
+
+![Book task card - to test](./docs/progress-03-books.jpg)
+Books just need a unit test for editing functionality.
