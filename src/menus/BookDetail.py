@@ -14,6 +14,8 @@ from functions.utils import menu_banner, create_menu_table
 
 # This is implemented as a class as I need various sub-class versions of this for adding & editing.
 class _BookDetailView:
+    """Base class of a detail view to be subclassed."""
+
     def __init__(self, console: Console):
         self.console = console
 
@@ -46,6 +48,8 @@ class BookDetailAdd(_BookDetailView):
                 continue
             try:
                 book_to_add = add_book_options[user_choice]()
+                if not book_to_add:
+                    break
                 self.active_shelf.add_new_book(book_to_add)
                 self.add_screen_intro()
             except BookNotFound:
@@ -62,12 +66,15 @@ class BookDetailAdd(_BookDetailView):
             "B": "Back",
         }
 
-        self.console.print("Add Mode\nAdd manually or search.", style="i green")
+        self.console.print(
+            "Add Mode\nAdd manually or search.", style="i green underline"
+        )
         self.console.print(
             create_menu_table(table_key=table_options, show_header=False, box=False)
         )
 
     def add_book_manually(self) -> Book:
+        """Manually ask the user to input fields, then return a book to be added."""
         self.console.print("Manual Mode", style="i green underline")
         book_title = handle_string_input("Book title: ")
         author_name = handle_string_input("Author name: ")
@@ -86,21 +93,27 @@ class BookDetailAdd(_BookDetailView):
         )
 
     def add_book_search(self) -> Book:
+        """Get a search string from a user, uses a SearchHandler
+        to discover the book, present the results and take their selection."""
         self.console.print("Search Mode", style="i blue underline")
         term_to_search = handle_string_input("Search term: ")
         search_handler = SearchHandler(term_to_search)
         self.console.print(search_handler.search_results)
         while True:
-            self.console.print("Select your result from 1-10")
-            chosen_result = handle_int_input("Selection: ")
-            if 1 > chosen_result < 10:
+            self.console.print("Select your result from 1-10, or \cancel to cancel.")
+            chosen_result = handle_string_input("Selection: ")
+            if chosen_result == "\cancel":
+                break
+            if not chosen_result.isnumeric():
                 continue
-            break
-        found_book = search_handler.make_user_choice(chosen_result)
-        return found_book
+            if 1 > int(chosen_result) < 10:
+                found_book = search_handler.make_user_choice(chosen_result)
+                return found_book
 
 
 class BookDetailEdit(_BookDetailView):
+    """Asks the user to select a book, then allow them to edit that book's fields."""
+
     def __init__(self, console: Console, book):
         super().__init__(console)
         self.book = book
