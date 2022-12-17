@@ -2,7 +2,6 @@ import requests
 import orjson
 from Book import Book
 from rich.table import Table
-from rich.console import Console
 
 
 class SearchHandler:

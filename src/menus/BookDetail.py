@@ -1,5 +1,6 @@
 # Types
 from rich.console import Console
+from rich.text import Text
 
 from Book import Book
 from exceptions import BookNotFound
@@ -72,7 +73,8 @@ class BookDetailAdd(_BookDetailView):
         author_name = handle_string_input("Author name: ")
         first_published = handle_int_input("Year first published: ")
         self.console.print(
-            f"New book added: {book_title} by {author_name}, first published in {first_published}"
+            Text("New book added:", style="green", end=""),
+            f"{book_title} by {author_name}, first published in {first_published}",
         )
 
         return Book(

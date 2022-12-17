@@ -67,7 +67,7 @@ def print_shelf_contents(active_shelf, console):
     table = Table()
     if active_shelf.length == 0:
         table.show_header = False
-        table.add_row("Empty shelf!")
+        table.add_row("Empty shelf!", style="italic")
     else:
         table.add_column("Book Title")
         table.add_column("Author")
