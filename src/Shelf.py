@@ -35,9 +35,7 @@ class Shelf:
         for key in updates:
             book_to_edit.update_book(key, updates[key])
 
-    def remove_book(self, book_title_to_remove):
-        new_contents = [
-            book for book in self.contents if book.title != book_title_to_remove
-        ]
+    def remove_book(self, book_to_remove):
+        new_contents = [book for book in self.contents if book != book_to_remove]
 
         self.contents = new_contents
