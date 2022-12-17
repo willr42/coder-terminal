@@ -3,7 +3,7 @@ from rich.console import Console
 from rich.table import Table
 
 from exceptions import UserExited
-from menus.BookDetail import BookDetailAdd
+from menus.BookDetail import BookDetailAdd, BookDetailEdit
 from utils import create_menu_table, menu_banner
 from user_input import menu_option_input, handle_string_input
 
@@ -91,7 +91,7 @@ def menu_edit_book(active_shelf, console):
         if not book:
             console.print(f"Sorry, I can't find that book.", style="red b")
             return
-        # Open edit menu
+        BookDetailEdit(console=console, book=book).edit_book()
 
 
 def menu_delete_book(active_shelf, console):

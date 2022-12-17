@@ -1,3 +1,4 @@
+# Types
 from rich.console import Console
 
 from Book import Book
@@ -5,10 +6,9 @@ from exceptions import BookNotFound
 from user_input import menu_option_input, handle_string_input, handle_int_input
 from utils import menu_banner, create_menu_table
 
-# This is implemented as a class as I need various sub-class versions of this for add, edit and viewing.
+# This is implemented as a class as I need various sub-class versions of this for adding & editing.
 class _BookDetailView:
-    def __init__(self, active_shelf, console: Console):
-        self.active_shelf = active_shelf
+    def __init__(self, console: Console):
         self.console = console
 
     def print_intro(self):
@@ -21,7 +21,8 @@ class BookDetailAdd(_BookDetailView):
     """View for adding a new book."""
 
     def __init__(self, active_shelf, console):
-        super().__init__(active_shelf, console)
+        self.active_shelf = active_shelf
+        super().__init__(console)
 
     def add_book(self):
         """Main method for adding a book. Presents menu options and handles input."""
@@ -31,7 +32,7 @@ class BookDetailAdd(_BookDetailView):
         add_book_options = {"M": self.add_book_manually, "S": self.add_book_search}
 
         while True:
-            user_choice = menu_option_input("Choose your option: ").upper()
+            user_choice = menu_option_input("Choose your option: ")
             if user_choice == "B":
                 return False
             if user_choice not in add_book_options.keys():
@@ -82,3 +83,49 @@ class BookDetailAdd(_BookDetailView):
         term_to_search = handle_string_input("Search term: ")
         search_handler = SearchHandler(term_to_search)
         self.console.print(search_handler.search_results)
+
+
+class BookDetailEdit(_BookDetailView):
+    def __init__(self, console: Console, book):
+        super().__init__(console)
+        self.book = book
+
+    def edit_book(self):
+        """Main method for editing a book."""
+
+        self.edit_screen_intro()
+
+        edit_book_options = {"T": "title", "A": "author", "D": "first_publish_year"}
+
+        while True:
+            user_choice = menu_option_input("Choose your option: ")
+            if user_choice == "B":
+                return False
+            if user_choice not in edit_book_options.keys():
+                print("Sorry, please select a valid choice.")
+                continue
+            if user_choice == "D":
+                new_field_info = handle_int_input("Update: ")
+            else:
+                new_field_info = handle_string_input("Update: ")
+            self.book.update_book(
+                key_to_update=edit_book_options[user_choice],
+                value_to_change=new_field_info,
+            )
+            self.edit_screen_intro()
+
+    def edit_screen_intro(self):
+        """Prints instructional information."""
+        self.print_intro()
+
+        table_options = {
+            "T": "Edit title",
+            "A": "Edit author name",
+            "D": "Edit first publish date",
+            "B": "Go Back",
+        }
+
+        self.console.print("Edit Mode", style="i green")
+        self.console.print(
+            create_menu_table(table_key=table_options, show_header=False, box=False)
+        )
