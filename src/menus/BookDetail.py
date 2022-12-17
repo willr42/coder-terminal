@@ -3,6 +3,7 @@ from rich.console import Console
 
 from Book import Book
 from exceptions import BookNotFound
+from functions.SearchHandler import SearchHandler
 from functions.user_input import (
     menu_option_input,
     handle_string_input,
@@ -87,6 +88,14 @@ class BookDetailAdd(_BookDetailView):
         term_to_search = handle_string_input("Search term: ")
         search_handler = SearchHandler(term_to_search)
         self.console.print(search_handler.search_results)
+        while True:
+            self.console.print("Select your result from 1-10")
+            chosen_result = handle_int_input("Selection: ")
+            if 1 > chosen_result < 10:
+                continue
+            break
+        found_book = search_handler.make_user_choice(chosen_result)
+        return found_book
 
 
 class BookDetailEdit(_BookDetailView):
