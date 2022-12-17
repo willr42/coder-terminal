@@ -12,16 +12,24 @@ This codebase follows the [PEP8 style](https://peps.python.org/pep-0008/) using 
 
 # How to use this program
 
+## System Requirements
+The project has been tested on MacOS and Ubuntu machines, and should work fine on Windows as well. The project requires Python 3. You may encounter bugs if using a Python version earlier than Python 3.10.
+
 ## Installation
 
-The project comes bundled with 
+The project comes bundled with two scripts to help make installation easier. `./setup.sh` should be run from the root directory. It will check your python version, activate the virtual environment and run the program for the first time. After you've run installation once, `./greatreads.sh` can be used to launch the application.
 
-!TODO!
+## Usage
 
-- installation steps
-- any dependencies required by the application to operate
-- any system/hardware requirements
-- how to use any command line arguments made for the application
+The whole program runs in a menu-driven way and does not take command-line arguments. Input letters to navigate the various menus. It should gracefully handle exiting.
+
+## Third-Party Dependencies
+- `black` for code linting 💅
+- `orjson` for a faster serialization/deserialization than in the standard library 🚅
+- `platformdirs` to locate a cross-platform place to store the library file 🌐
+- `pytest` for unit testing 👨‍🔬
+- `requests` for book search 🔍
+- `rich` for command line prettiness ✨
 
 # Feature list
 
