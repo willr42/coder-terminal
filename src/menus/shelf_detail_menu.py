@@ -60,6 +60,10 @@ def print_shelf_detail_menu(active_shelf, console):
 def print_shelf_contents(active_shelf, console):
     """Print books in shelf."""
     table = Table()
+    if active_shelf.length == 0:
+        table.show_header = False
+        table.add_row("Empty shelf!")
+    else:
     table.add_column("Book Title")
     table.add_column("Author")
     table.add_column("First Published")
