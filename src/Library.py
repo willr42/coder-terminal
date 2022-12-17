@@ -26,14 +26,17 @@ class Library:
                 json_path.touch()
             return json_path
         except Exception as exception:
-            print(f"Something went wrong. {exception}")
+            print(
+                f"Sorry, something completely unexpected went wrong: {exception}. Please file a bug on GitHub."
+            )
+            exit(2)
 
     def deserialize_library(self):
         """Loads the library from disk."""
 
         library_path = self.json_path
 
-        library_path = Path.home() / "development" / "coder-terminal" / "dummydata.json"
+        library_path = (
 
         try:
             with open(library_path, "r") as file:
@@ -42,10 +45,11 @@ class Library:
                 if cache:
                     json_data = orjson.loads(cache)
                     return json_data
-        except FileNotFoundError:
+        except FileNotFoundError as exception:
+            print(
+                f"Something's gone horribly wrong. Exception: {exception}. Please file a bug on GitHub."
+            )
             exit(1)
-
-    # TODO Missing step here. Add a validate data section – we want to make sure the JSON file hasn't been changed somehow between sessions.
 
     def create_library(self, data):
         """Creates the Shelves and Books inside the library."""
