@@ -55,6 +55,3 @@ class SearchHandler:
 
     def make_user_choice(self, user_index):
         return self.results_list[user_index - 1]
-
-
-Console().print(SearchHandler("lord of the rings").create_result_table())
