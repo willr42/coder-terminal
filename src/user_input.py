@@ -31,11 +31,11 @@ def menu_option_input(prompt_str):
     console = Console()
     while True:
         try:
-            user_input = collect_user_input(prompt_str).upper()
+            user_input = collect_user_input(prompt_str)
         except UserInputEmptyException:
             console.print("❌ Sorry, your input was empty. Try again.")
         else:
-            return user_input
+            return user_input.upper()
 
 
 def collect_user_input(prompt_str):
