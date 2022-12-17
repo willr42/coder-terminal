@@ -19,8 +19,8 @@ class App:
                 main_response = welcome_menu()
                 if not main_response:
                     raise UserExited
-                shelf_response = library_menu(self.library)
-                if not shelf_response:
+                library_response = library_menu(self.library)
+                if not library_response:
                     raise UserExited
         except (UserExited, KeyboardInterrupt, EOFError):
             sys.exit(0)

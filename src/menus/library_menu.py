@@ -21,7 +21,7 @@ def library_menu(library):
         menu_banner("Library View", "Here you can make changes to your shelves.")
     )
 
-    print_shelf_menu(library=library, console=console)
+    print_library_menu(library=library, console=console)
 
     while True:
         user_choice = menu_option_input("Choose your option: ")
@@ -33,11 +33,11 @@ def library_menu(library):
             print("Sorry, please select a valid choice.")
             continue
         library_menu_choices[user_choice](library=library, console=console)
-        print_shelf_menu(library=library, console=console)
+        print_library_menu(library=library, console=console)
         # If this returns False, they've selected quit
 
 
-def print_shelf_menu(library, console):
+def print_library_menu(library, console):
     """Present menu options."""
 
     print_shelves(library=library, console=console)
