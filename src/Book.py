@@ -2,7 +2,7 @@ class Book:
     def __init__(self, data):
         self.title = data.get("title", "")
         self.author = data.get("author", "")
-        self.first_publish_year = data.get("first_publish_year", "")
+        self.first_publish_year = data.get("first_publish_year", 0)
 
     @property
     def publication_year(self):
