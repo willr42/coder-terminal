@@ -1,7 +1,10 @@
-from pathlib import Path
-from Shelf import Shelf
+# Library imports
 import platformdirs  # Using platformdirs, hopefully this should be cross-platform...
 import orjson
+
+# Project imports
+from pathlib import Path
+from Shelf import Shelf
 
 
 class Library:

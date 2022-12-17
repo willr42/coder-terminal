@@ -1,8 +1,9 @@
+import sys
+
 from Library import Library
 from menus.welcome_menu import welcome_menu
 from menus.library_menu import library_menu
 from exceptions import UserExited
-import sys
 
 
 class App:

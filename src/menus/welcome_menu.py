@@ -1,7 +1,10 @@
-from user_input import menu_option_input
+# Library imports
 from rich.console import Console
 from rich.table import Table
 from rich.panel import Panel
+
+# Project imports
+from functions.user_input import menu_option_input
 
 
 def welcome_menu():

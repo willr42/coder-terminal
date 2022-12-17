@@ -2,9 +2,9 @@ from time import sleep
 from rich.console import Console
 from rich.table import Table
 
-from user_input import menu_option_input, handle_string_input
 from menus.shelf_detail_menu import shelf_detail_menu
-from utils import create_menu_table, menu_banner
+from functions.user_input import menu_option_input, handle_string_input
+from functions.utils import create_menu_table, menu_banner
 
 
 def library_menu(library):

@@ -1,11 +1,13 @@
+# Library imports
 from time import sleep
 from rich.console import Console
 from rich.table import Table
 
+# Project imports
 from exceptions import UserExited
 from menus.BookDetail import BookDetailAdd, BookDetailEdit
-from utils import create_menu_table, menu_banner
-from user_input import menu_option_input, handle_string_input
+from functions.user_input import menu_option_input, handle_string_input
+from functions.utils import create_menu_table, menu_banner
 
 
 def shelf_detail_menu(library, active_shelf_name):

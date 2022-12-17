@@ -1,4 +1,5 @@
 from rich.console import Console
+
 from exceptions import UserExited, UserInputEmptyException
 
 

@@ -3,8 +3,12 @@ from rich.console import Console
 
 from Book import Book
 from exceptions import BookNotFound
-from user_input import menu_option_input, handle_string_input, handle_int_input
-from utils import menu_banner, create_menu_table
+from functions.user_input import (
+    menu_option_input,
+    handle_string_input,
+    handle_int_input,
+)
+from functions.utils import menu_banner, create_menu_table
 
 # This is implemented as a class as I need various sub-class versions of this for adding & editing.
 class _BookDetailView:
