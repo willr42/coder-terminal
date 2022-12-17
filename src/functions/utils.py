@@ -3,6 +3,8 @@ from rich.console import Group
 from rich.panel import Panel
 from rich.table import Table
 
+import os
+
 
 def create_menu_table(table_key, **table_options):
     """Creates a table menu, and passes all other options through to Table constructor.
@@ -42,3 +44,7 @@ def menu_banner(heading, sub):
         ),
         expand=False,
     )
+
+
+def clear_screen():
+    os.system("cls" if os.name == "NT" else "clear")

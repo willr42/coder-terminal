@@ -4,6 +4,7 @@ from Library import Library
 from menus.welcome_menu import welcome_menu
 from menus.library_menu import library_menu
 from exceptions import UserExited
+from functions.utils import clear_screen
 
 
 class App:
@@ -12,6 +13,7 @@ class App:
 
     def run(self):
         """Run main loop of the App."""
+        clear_screen()
         try:
             while True:
                 main_response = welcome_menu()
