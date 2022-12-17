@@ -14,8 +14,8 @@ def shelf_detail_menu(library, active_shelf_name):
         "A": menu_add_book,
         "E": menu_edit_book,
         "R": menu_delete_book,
-        "V": menu_view_book,
     }
+
     console = Console()
 
     console.print(
@@ -53,7 +53,6 @@ def print_shelf_detail_menu(active_shelf, console):
         "A": "Add a Book",
         "E": "Edit a Book",
         "R": "Remove a Book",
-        "V": "View a Book's details",
         "B": "Go Back",
         "Q": "Quit",
     }
@@ -116,7 +115,3 @@ def find_book_in_shelf(active_shelf):
         if book_to_find == book.title:
             return book
     return False
-
-
-def menu_view_book(active_shelf, console):
-    pass
