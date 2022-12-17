@@ -1,7 +1,7 @@
 import requests
 import orjson
 from Book import Book
-from rich.table import Table, Column
+from rich.table import Table
 from rich.console import Console
 
 
@@ -13,6 +13,7 @@ class SearchHandler:
         self.search_term = search_term
         self.search_response = self.perform_search()
         self.results_list = self.process_results()
+        self._search_results = self.create_result_table()
 
     @property
     def search_results(self):
@@ -53,7 +54,7 @@ class SearchHandler:
         return table
 
     def make_user_choice(self, user_index):
-        return self.search_results[user_index - 1]
+        return self.results_list[user_index - 1]
 
 
 Console().print(SearchHandler("lord of the rings").create_result_table())
