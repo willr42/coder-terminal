@@ -1,4 +1,4 @@
-from user_input import handle_user_input
+from user_input import menu_option_input
 from rich.console import Console
 from rich.table import Table
 from rich.panel import Panel
@@ -10,7 +10,7 @@ def welcome_menu():
     main_menu_choices = {"1": True, "2": False}
 
     while True:
-        user_choice = handle_user_input("Choose your option: ")
+        user_choice = menu_option_input("Choose your option: ")
         if user_choice not in main_menu_choices.keys():
             print("Sorry, please select a valid choice.")
             continue

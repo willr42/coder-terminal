@@ -1,9 +1,8 @@
 from time import sleep
 from rich.console import Console
 from rich.table import Table
-from rich.panel import Panel
 
-from user_input import handle_user_input
+from user_input import menu_option_input, handle_string_input
 from menus.shelf_detail_menu import shelf_detail_menu
 from utils import create_menu_table, menu_banner
 
@@ -23,7 +22,7 @@ def shelf_menu(library):
     print_shelf_menu(library=library, console=console)
 
     while True:
-        user_choice = handle_user_input("Choose your option: ").upper()
+        user_choice = menu_option_input("Choose your option: ")
         # Handle direct quit order
         if user_choice == "Q":
             return False
@@ -67,7 +66,7 @@ def menu_add_shelf(library, console):
     console.print(
         "Enter the name of the shelf you'd like to add, or \cancel to cancel", style="b"
     )
-    new_shelf_name = handle_user_input("New Shelf: ")
+    new_shelf_name = handle_string_input("New Shelf: ")
     if new_shelf_name != "\cancel":
         library.add_shelf(new_shelf_name)
 
@@ -77,10 +76,10 @@ def menu_edit_shelf(library, console):
     console.print(
         "Which shelf would you like to rename? Or \cancel to cancel", style="b"
     )
-    shelf_to_edit = handle_user_input("Edit Name: ")
+    shelf_to_edit = handle_string_input("Edit Name: ")
     if shelf_to_edit != "\cancel":
         # If the shelf matches with one of the shelves in the library
-        new_name = handle_user_input("Enter the new name of the shelf: ")
+        new_name = handle_string_input("Enter the new name of the shelf: ")
         library.rename_shelf(shelf_to_edit, new_name)
 
 
@@ -92,7 +91,7 @@ def menu_delete_shelf(library, console):
 
     else:
         console.print("Which shelf would you like to delete?", style="b")
-        delete_shelf_name = handle_user_input("Shelf to Delete: ")
+        delete_shelf_name = handle_string_input("Shelf to Delete: ")
         removed = library.remove_shelf(delete_shelf_name)
         if not removed:
             console.print("Sorry, I couldn't find that shelf.", style="red b")
@@ -103,7 +102,7 @@ def menu_view_shelf(library, console):
     """Activates individual shelf view."""
     # Take input for shelf name
     console.print("Which shelf would you like to view?", style="b")
-    shelf_to_view = handle_user_input("Shelf to View: ")
+    shelf_to_view = handle_string_input("Shelf to View: ")
     # If shelf doesn't exist, back to menu
     if not library.get_shelf(shelf_to_view):
         console.print(f"Sorry, the {shelf_to_view} shelf doesn't exist.")

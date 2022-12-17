@@ -3,8 +3,9 @@ from rich.console import Console
 from rich.table import Table
 
 from exceptions import UserExited
+from menus.BookDetail import BookDetailAdd
 from utils import create_menu_table, menu_banner
-from user_input import handle_user_input
+from user_input import menu_option_input, handle_string_input
 
 
 def shelf_detail_menu(library, active_shelf_name):
@@ -29,7 +30,7 @@ def shelf_detail_menu(library, active_shelf_name):
     print_shelf_detail_menu(active_shelf=active_shelf, console=console)
 
     while True:
-        user_choice = handle_user_input("Choose your option: ").upper()
+        user_choice = menu_option_input("Choose your option: ")
         if user_choice == "Q":
             raise UserExited
         if user_choice == "B":
@@ -77,9 +78,7 @@ def print_shelf_contents(active_shelf, console):
 
 def menu_add_book(active_shelf, console):
     """Opens the add menu screen."""
-    while True:
-        print("Add book")
-        break
+    BookDetailAdd(active_shelf=active_shelf, console=console).add_book()
 
 
 def menu_edit_book(active_shelf, console):
@@ -112,7 +111,7 @@ def menu_delete_book(active_shelf, console):
 
 def find_book_in_shelf(active_shelf):
     "Searches through a shelf to find a book."
-    book_to_find = handle_user_input("Book: ")
+    book_to_find = handle_string_input("Book: ")
     for book in active_shelf.contents:
         if book_to_find == book.title:
             return book
