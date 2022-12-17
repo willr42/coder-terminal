@@ -4,5 +4,9 @@ class Book:
         self.author = data.get("author", "")
         self.first_publish_year = data.get("first_publish_year", "")
 
+    @property
+    def publication_year(self):
+        return str(self.first_publish_year)
+
     def update_book(self, key_to_update, value_to_change):
         setattr(self, key_to_update, value_to_change)
