@@ -1,6 +1,6 @@
 from Library import Library
 from menus.welcome_menu import welcome_menu
-from menus.shelf_menu import shelf_menu
+from menus.library_menu import library_menu
 from exceptions import UserExited
 import sys
 
@@ -16,7 +16,7 @@ class App:
                 main_response = welcome_menu()
                 if not main_response:
                     raise UserExited
-                shelf_response = shelf_menu(self.library)
+                shelf_response = library_menu(self.library)
                 if not shelf_response:
                     raise UserExited
         except (UserExited, KeyboardInterrupt, EOFError):
