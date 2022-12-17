@@ -29,3 +29,10 @@ class Shelf:
         new_contents = [book for book in self.contents if book != book_to_remove]
 
         self.contents = new_contents
+
+    def to_JSON(self):
+        json_dict = {"shelf_name": self.shelf_name, "books": []}
+        for book in self.contents:
+            json_dict["books"].append(book.to_JSON())
+
+        return json_dict

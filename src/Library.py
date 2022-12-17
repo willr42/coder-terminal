@@ -39,14 +39,6 @@ class Library:
 
         library_path = self.json_path
 
-        library_path = (
-            Path.home()
-            / "development"
-            / "coderacademy"
-            / "coder-terminal"
-            / "dummydata.json"
-        )
-
         try:
             with open(library_path, "r") as file:
                 cache = file.read()
@@ -56,7 +48,7 @@ class Library:
                     return json_data
         except FileNotFoundError as exception:
             print(
-                f"Something's gone horribly wrong. Exception: {exception}. Please file a bug on GitHub."
+                f"Something's gone horribly wrong. {exception}. Please file a bug on GitHub."
             )
             exit(1)
 
@@ -104,4 +96,12 @@ class Library:
 
     def save_library(self):
         """Save the library to disk as JSON."""
-        print("saved library")
+
+        json_shelf_list = []
+        for shelf in self.contents:
+            json_shelf_list.append(shelf.to_JSON())
+
+        with open(self.json_path, "wb") as file:
+            file.write(orjson.dumps({"shelves": json_shelf_list}))
+
+        print(f"saved to {self.json_path}")

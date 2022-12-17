@@ -13,3 +13,10 @@ class Book:
 
     def update_book(self, key_to_update, value_to_change):
         setattr(self, key_to_update, value_to_change)
+
+    def to_JSON(self):
+        return {
+            "title": self.title,
+            "author": self.author,
+            "first_publish_year": self.first_publish_year,
+        }
