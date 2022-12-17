@@ -16,24 +16,25 @@ This codebase follows the [PEP8 style](https://peps.python.org/pep-0008/) using 
 
 # Feature list
 ## Library Management
-- A first-time user is able to create a new Library that will track their books.
-- A returning user is greeted with their existing Library, loaded from JSON on disk.
-- Upon exiting, the user's Library is serialized & saved as JSON.
+- [x] A first-time user is able to create a new Library that will track their books.
+- [x] A returning user is greeted with their existing Library, loaded from JSON on disk.
+- [ ] Upon exiting, the user's Library is serialized & saved as JSON.
 ## Shelf Management
-- A user with no shelves is able to add a new shelf.
-- A user with shelves is automatically shown the first shelf in the list. This shelf displays a summary of all the books within the shelf.
-- A user can sort the shelf by book title, author name, publication date.
-- A user can delete a shelf.
+- [x] A user with no shelves is able to add a new shelf.
+- [x] A user with shelves selects the shelf they wish to be active. This shelf displays a summary of all the books within the shelf.
+- [ ] A user can sort the shelf by book title, author name, publication date.
+- [ ] A user can delete a shelf.
 ## Book Management
-- A user can add a book to the active shelf.
-- A user can delete a book from the active shelf.
-- A user can add a book manually by inputting the book title, author name & publication date.
-- A user can search for a book by ISBN (results provided by the OpenLibrary API).
-- A user can search for a book by fuzzy strings (results provided by the OpenLibrary API).
-- A user can edit the details of an existing book.
+- [ ] A user can add a book to the active shelf.
+- [x] A user can delete a book from the active shelf.
+- [ ] A user can add a book manually by inputting the book title, author name & publication date.
+- [ ] A user can search for a book by ISBN (results provided by the OpenLibrary API).
+- [ ] A user can search for a book by fuzzy strings (results provided by the OpenLibrary API).
+- [ ] A user can edit the details of an existing book.
 
 # Implementation plan
-Implementation is formally tracked [on Trello](https://trello.com/b/8nrTX4Wp/greatreads).
+Implementation is formally tracked [on Trello](https://trello.com/b/8nrTX4Wp/greatreads). I have adopted an Agile-style methodology where I assign Story Points to specific tasks. These story points represent a rough guess at the amount of work required to implement a particular feature.
+
 1. Scaffold the views. Library view, Shelf view & Book view.
 2. Develop the Book class.
 3. Develop the Library class.
@@ -42,3 +43,19 @@ Implementation is formally tracked [on Trello](https://trello.com/b/8nrTX4Wp/gre
 6. Develop the Add Book feature.
 7. Develop the sorting of shelves.
 8. Develop on-disk persistence.
+
+## Implementation progress
+![First progress shot.](./docs/progress-00-overview.jpg)
+Initial setup of the trello board. 
+
+![Overview after first sprint.](./docs/progress-01-overview.jpg)
+Overview after first dev sprint. Some tasks completed.
+
+![Library task card](./docs/progress-01-library.jpg)
+Card of Library features.
+
+![Persistence task card](./docs/progress-01-persistence.jpg)
+Card of Persistence features.
+
+![Shelf task card - unfinished](./docs/progress-02-shelves.jpg)
+An in-progress task; building menus took longer than anticipated.
