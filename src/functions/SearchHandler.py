@@ -3,6 +3,8 @@ import orjson
 from Book import Book
 from rich.table import Table
 
+from exceptions import NetworkConnectivityError
+
 
 class SearchHandler:
 
@@ -10,15 +12,21 @@ class SearchHandler:
 
     def __init__(self, search_term: str):
         self.search_term = search_term
-        self.search_response = self.perform_search()
-        self.results_list = self.process_results()
-        self._search_results = self.create_result_table()
+
+    def run_search(self):
+        """Method responsible for running the search from start to finish."""
+        try:
+            self.search_response = self._perform_search()
+            self.results_list = self._process_results()
+            self._search_results = self._create_result_table()
+        except (requests.exceptions.ConnectionError, requests.exceptions.HTTPError):
+            raise NetworkConnectivityError
 
     @property
     def search_results(self):
         return self._search_results
 
-    def perform_search(self):
+    def _perform_search(self):
         search_term = self.search_term
         split_by_plus = search_term.replace(" ", "+")
         response = requests.get(
@@ -26,7 +34,7 @@ class SearchHandler:
         )
         return response.content
 
-    def process_results(self):
+    def _process_results(self):
         search_response = self.search_response
         results = []
         processed = orjson.loads(search_response)
@@ -41,7 +49,7 @@ class SearchHandler:
             results.append(new_book)
         return results
 
-    def create_result_table(self):
+    def _create_result_table(self):
         to_print = self.results_list
         table = Table(title="Search Results", show_lines=True)
         table.add_column("Choice Number", style="green")
