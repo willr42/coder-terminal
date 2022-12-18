@@ -6,6 +6,10 @@ Repository for my terminal app for Coder Academy, GreatReads. It is a CLI librar
 
 Source code is provided [on Github](https://github.com/willr42/coder-terminal).
 
+# Video Walkthrough
+
+See a 10-minute walkthrough of this project [on Youtube](https://youtu.be/mmM8n5h9yAQ).
+
 # Style Guide
 
 This codebase follows the [PEP8 style](https://peps.python.org/pep-0008/) using [black](https://github.com/psf/black) for automatic code formatting. No more manual indenting!
