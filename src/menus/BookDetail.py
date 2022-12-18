@@ -47,6 +47,8 @@ class BookDetailAdd(_BookDetailView):
                 print("Sorry, please select a valid choice.")
                 continue
             book_to_add = add_book_options[user_choice]()
+            if not book_to_add:
+                break
             self.active_shelf.add_new_book(book_to_add)
             self.add_screen_intro()
             self.console.print("Cancelling adding book.", style="pink")
@@ -88,7 +90,7 @@ class BookDetailAdd(_BookDetailView):
             }
         )
 
-    def add_book_search(self) -> Book:
+    def add_book_search(self) -> Book | bool:
         """Get a search string from a user, uses a SearchHandler
         to discover the book, present the results and take their selection."""
         self.console.print("Search Mode", style="i blue underline")
@@ -98,8 +100,10 @@ class BookDetailAdd(_BookDetailView):
             search_handler.run_search()
         except NetworkConnectivityError:
             self.console.print(
-                "Sorry, there's been a network error. Check your internet connection and try again."
+                "Sorry, there's been a network error. Check your internet connection and try again.",
+                style="red b",
             )
+            return False
 
         self.console.print(search_handler.search_results)
         while True:
