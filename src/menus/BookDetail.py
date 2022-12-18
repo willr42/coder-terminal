@@ -48,10 +48,10 @@ class BookDetailAdd(_BookDetailView):
                 continue
             book_to_add = add_book_options[user_choice]()
             if not book_to_add:
+                self.console.print("Cancelling adding book.", style="red")
                 break
             self.active_shelf.add_new_book(book_to_add)
             self.add_screen_intro()
-            self.console.print("Cancelling adding book.", style="pink")
             break
 
     def add_screen_intro(self):
