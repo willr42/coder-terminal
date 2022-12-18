@@ -36,6 +36,10 @@ The whole program runs in a menu-driven way and does not take command-line argum
 - `requests` for book search 🔍
 - `rich` for command line prettiness ✨
 
+## Testing
+
+There are unit tests for the three main objects (`Book`, `Shelf` & `Library`). To run the test suite, run the shell script `test_greatreads.sh`.
+
 # Feature list
 
 ## Library Management
