@@ -17,11 +17,9 @@ def welcome_menu():
         if user_choice not in main_menu_choices.keys():
             print("Sorry, please select a valid choice.")
             continue
-        match user_choice:
-            case "1":
-                return True
-            case "2":
-                return False
+        elif user_choice == "1":
+            return True
+        return False
 
 
 def print_welcome_menu():

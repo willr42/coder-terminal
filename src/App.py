@@ -15,11 +15,10 @@ class App:
         """Run main loop of the App."""
         clear_screen()
         try:
-            while True:
-                if not welcome_menu():
-                    raise UserExited
-                if not library_menu(self.library):
-                    raise UserExited
+            if not welcome_menu():
+                raise UserExited
+            if not library_menu(self.library):
+                raise UserExited
         except (UserExited, KeyboardInterrupt, EOFError):
             sys.exit(0)
         finally:
