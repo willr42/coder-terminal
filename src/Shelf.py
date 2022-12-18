@@ -2,9 +2,13 @@ from Book import Book
 
 
 class Shelf:
-    def __init__(self, data={}):
+    def __init__(self, data: dict = None):
+        if not data:
+            data = {}
+
         self.contents = []
-        self.shelf_name = "default"
+        self.shelf_name = "Default Shelf"
+
         if data:
             self.shelf_name = data.get("shelf_name", "Default Shelf")
             self.add_initial_books(data)
