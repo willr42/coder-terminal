@@ -51,7 +51,10 @@ class BookDetailAdd(_BookDetailView):
                 self.console.print("Cancelling adding book.", style="red")
                 break
             self.active_shelf.add_new_book(book_to_add)
-            self.add_screen_intro()
+            self.console.print(
+                Text("New book added:", style="green", end=""),
+                f"{book_to_add.title} by {book_to_add.author}, first published in {book_to_add.first_publish_year}",
+            )
             break
 
     def add_screen_intro(self):
@@ -77,10 +80,6 @@ class BookDetailAdd(_BookDetailView):
         book_title = handle_string_input("Book title: ")
         author_name = handle_string_input("Author name: ")
         first_published = handle_int_input("Year first published: ")
-        self.console.print(
-            Text("New book added:", style="green", end=""),
-            f"{book_title} by {author_name}, first published in {first_published}",
-        )
 
         return Book(
             {
@@ -108,12 +107,10 @@ class BookDetailAdd(_BookDetailView):
         self.console.print(search_handler.search_results)
         while True:
             self.console.print("Select your result from 1-10, or \cancel to cancel.")
-            chosen_result = handle_string_input("Selection: ")
+            chosen_result = handle_int_input("Selection: ")
             if chosen_result == "\cancel":
                 break
-            if not chosen_result.isnumeric():
-                continue
-            if 1 > int(chosen_result) < 10:
+            if 1 <= chosen_result <= 10:
                 found_book = search_handler.make_user_choice(chosen_result)
                 return found_book
 
