@@ -3,7 +3,7 @@ from rich.console import Console
 from rich.text import Text
 
 from Book import Book
-from exceptions import BookNotFound
+from exceptions import NetworkConnectivityError
 from functions.SearchHandler import SearchHandler
 from functions.user_input import (
     menu_option_input,
@@ -46,15 +46,11 @@ class BookDetailAdd(_BookDetailView):
             if user_choice not in add_book_options.keys():
                 print("Sorry, please select a valid choice.")
                 continue
-            try:
-                book_to_add = add_book_options[user_choice]()
-                if not book_to_add:
-                    break
-                self.active_shelf.add_new_book(book_to_add)
-                self.add_screen_intro()
-            except BookNotFound:
-                self.console.print("Cancelling adding book.", style="pink")
-                break
+            book_to_add = add_book_options[user_choice]()
+            self.active_shelf.add_new_book(book_to_add)
+            self.add_screen_intro()
+            self.console.print("Cancelling adding book.", style="pink")
+            break
 
     def add_screen_intro(self):
         """Prints instructional information."""
@@ -98,6 +94,13 @@ class BookDetailAdd(_BookDetailView):
         self.console.print("Search Mode", style="i blue underline")
         term_to_search = handle_string_input("Search term: ")
         search_handler = SearchHandler(term_to_search)
+        try:
+            search_handler.run_search()
+        except NetworkConnectivityError:
+            self.console.print(
+                "Sorry, there's been a network error. Check your internet connection and try again."
+            )
+
         self.console.print(search_handler.search_results)
         while True:
             self.console.print("Select your result from 1-10, or \cancel to cancel.")
